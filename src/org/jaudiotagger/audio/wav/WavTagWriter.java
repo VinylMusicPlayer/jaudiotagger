@@ -633,8 +633,7 @@ public class WavTagWriter
                 baos.write(wii.getCode().getBytes(StandardCharsets.US_ASCII));
                 logger.config(loggingName + " Writing:" + wii.getCode() + ":" + next.getContent());
 
-                //TODO Is UTF8 allowed format
-                byte[] contentConvertedToBytes = next.getContent().getBytes(StandardCharsets.UTF_8);
+                byte[] contentConvertedToBytes = next.getContent().getBytes(StandardCharsets.ISO_8859_1);
                 baos.write(Utils.getSizeLEInt32(contentConvertedToBytes.length));
                 baos.write(contentConvertedToBytes);
 
@@ -683,7 +682,7 @@ public class WavTagWriter
                 {
                     baos.write(next.getId().getBytes(StandardCharsets.US_ASCII));
                     logger.config(loggingName + " Writing:" + next.getId() + ":" + next.getContent());
-                    byte[] contentConvertedToBytes = next.getContent().getBytes(StandardCharsets.UTF_8);
+                    byte[] contentConvertedToBytes = next.getContent().getBytes(StandardCharsets.ISO_8859_1);
                     baos.write(Utils.getSizeLEInt32(contentConvertedToBytes.length));
                     baos.write(contentConvertedToBytes);
 

@@ -1,4 +1,7 @@
 Summarise Changes
+3.02
+#355:When write to Wav LIST fields need to write as IS0-8859-1 not UTF-8
+
 3.0.1
 #039:Fixes required due to PR69 changes to AbstractID3v2Tag.getFrame() so that it now always returns list
 
