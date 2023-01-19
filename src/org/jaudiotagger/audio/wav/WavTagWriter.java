@@ -606,6 +606,30 @@ public class WavTagWriter
             return order1 - order2;
         }
     }
+
+    private void writeField( TagTextField tagTextField, String code, ByteArrayOutputStream baos)
+    {
+        try
+        {
+            baos.write(code.getBytes(StandardCharsets.US_ASCII));
+            logger.config(loggingName + " Writing:" + code + ":" + tagTextField.getContent());
+
+            byte[] contentConvertedToBytes = tagTextField.getContent().getBytes(StandardCharsets.ISO_8859_1);
+            baos.write(Utils.getSizeLEInt32(contentConvertedToBytes.length));
+            baos.write(contentConvertedToBytes);
+
+            //Write extra byte if data length not equal
+            if (Utils.isOddLength(contentConvertedToBytes.length))
+            {
+                baos.write(0);
+            }
+        }
+        catch (IOException ioe)
+        {
+            //Should never happen as not writing to file at this point
+            throw new RuntimeException(ioe);
+        }
+    }
     /**
      * Converts INfO tag to {@link java.nio.ByteBuffer}.
      *
@@ -613,108 +637,72 @@ public class WavTagWriter
      * @return byte buffer containing the tag data
      * @throws java.io.UnsupportedEncodingException
      */
-    public ByteBuffer convertInfoChunk(final WavTag tag) throws UnsupportedEncodingException
+    public ByteBuffer convertInfoChunk(final WavTag tag)
     {
-        try
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        WavInfoTag wif = tag.getInfoTag();
+
+        //Write the Info chunks
+        List<TagField> fields = wif.getAll();
+        Collections.sort(fields, new InfoFieldWriterOrderComparator());
+
+        boolean isTrackRewritten = false;
+
+        for(TagField nextField:fields)
         {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            WavInfoTag wif = tag.getInfoTag();
+            //Find mapping to LIST field and write it
+            TagTextField next = (TagTextField) nextField;
+            WavInfoIdentifier wii = WavInfoIdentifier.getByFieldKey(FieldKey.valueOf(next.getId()));
+            writeField( next, wii.getCode(), baos);
 
-            //Write the Info chunks
-            List<TagField> fields = wif.getAll();
-            Collections.sort(fields, new InfoFieldWriterOrderComparator());
-
-            boolean isTrackRewritten = false;
-
-            for(TagField nextField:fields)
+            //Add a duplicated record for Twonky if option enabled
+            if(wii==WavInfoIdentifier.TRACKNO)
             {
-                TagTextField next = (TagTextField) nextField;
-                WavInfoIdentifier wii = WavInfoIdentifier.getByFieldKey(FieldKey.valueOf(next.getId()));
-                baos.write(wii.getCode().getBytes(StandardCharsets.US_ASCII));
-                logger.config(loggingName + " Writing:" + wii.getCode() + ":" + next.getContent());
-
-                byte[] contentConvertedToBytes = next.getContent().getBytes(StandardCharsets.ISO_8859_1);
-                baos.write(Utils.getSizeLEInt32(contentConvertedToBytes.length));
-                baos.write(contentConvertedToBytes);
-
-                //Write extra byte if data length not equal
-                if (Utils.isOddLength(contentConvertedToBytes.length))
-                {
-                    baos.write(0);
-                }
-
-                //Add a duplicated record for Twonky
-                if(wii==WavInfoIdentifier.TRACKNO)
+                if(TagOptionSingleton.getInstance().isWriteWavForTwonky())
                 {
                     isTrackRewritten =true;
-                    if(TagOptionSingleton.getInstance().isWriteWavForTwonky())
-                    {
-                        baos.write(WavInfoIdentifier.TWONKY_TRACKNO.getCode().getBytes(StandardCharsets.US_ASCII));
-                        logger.config(loggingName + " Writing:" + WavInfoIdentifier.TWONKY_TRACKNO.getCode() + ":" + next.getContent());
-
-                        baos.write(Utils.getSizeLEInt32(contentConvertedToBytes.length));
-                        baos.write(contentConvertedToBytes);
-
-                        //Write extra byte if data length not equal
-                        if (Utils.isOddLength(contentConvertedToBytes.length))
-                        {
-                            baos.write(0);
-                        }
-                    }
+                    writeField( next, WavInfoIdentifier.TWONKY_TRACKNO.getCode(), baos);
                 }
             }
-
-            //Write any existing unrecognized tuples
-            Iterator<TagTextField> ti = wif.getUnrecognisedFields().iterator();
-            while(ti.hasNext())
-            {
-                TagTextField next = ti.next();
-
-                /**
-                 * There may be an existing Twonky itrk field we don't want to re-add this because above we already
-                 * add based on value of TRACK if user has enabled the isWriteWavForTwonky option
-                 *
-                 * And if we dont
-                 */
-                if(!next.getId().equals(WavInfoIdentifier.TWONKY_TRACKNO.getCode())
-                        ||
-                  (!isTrackRewritten && TagOptionSingleton.getInstance().isWriteWavForTwonky()))
-                {
-                    baos.write(next.getId().getBytes(StandardCharsets.US_ASCII));
-                    logger.config(loggingName + " Writing:" + next.getId() + ":" + next.getContent());
-                    byte[] contentConvertedToBytes = next.getContent().getBytes(StandardCharsets.ISO_8859_1);
-                    baos.write(Utils.getSizeLEInt32(contentConvertedToBytes.length));
-                    baos.write(contentConvertedToBytes);
-
-                    //Write extra byte if data length not equal
-                    if (Utils.isOddLength(contentConvertedToBytes.length))
-                    {
-                        baos.write(0);
-                    }
-                }
-            }
-
-            final ByteBuffer infoBuffer = ByteBuffer.wrap(baos.toByteArray());
-            infoBuffer.rewind();
-
-            //Now Write INFO header
-            final ByteBuffer infoHeaderBuffer = ByteBuffer.allocate(SIGNATURE_LENGTH);
-            infoHeaderBuffer.put(WavChunkType.INFO.getCode().getBytes(StandardCharsets.US_ASCII));
-            infoHeaderBuffer.flip();
-
-
-            //Construct a single ByteBuffer from both
-            ByteBuffer listInfoBuffer = ByteBuffer.allocateDirect(infoHeaderBuffer.limit() + infoBuffer.limit());
-            listInfoBuffer.put(infoHeaderBuffer);
-            listInfoBuffer.put(infoBuffer);
-            listInfoBuffer.flip();
-            return listInfoBuffer;
         }
-        catch (IOException ioe)
+
+        //Write any existing unrecognized tuples
+        Iterator<TagTextField> ti = wif.getUnrecognisedFields().iterator();
+        while(ti.hasNext())
         {
-            //Should never happen as not writing to file at this point
-            throw new RuntimeException(ioe);
+            TagTextField next = ti.next();
+
+            if(next.getId().equals(WavInfoIdentifier.TWONKY_TRACKNO.getCode()))
+            {
+                //Write only if has option set and not already written
+                if(!isTrackRewritten && TagOptionSingleton.getInstance().isWriteWavForTwonky())
+                {
+                    isTrackRewritten =true;
+                    writeField( next, WavInfoIdentifier.TWONKY_TRACKNO.getCode(), baos);
+                }
+            }
+            else
+            {
+                //Write back unrecognised field
+                writeField( next, next.getId(), baos);
+            }
         }
+
+        final ByteBuffer infoBuffer = ByteBuffer.wrap(baos.toByteArray());
+        infoBuffer.rewind();
+
+        //Now Write INFO header
+        final ByteBuffer infoHeaderBuffer = ByteBuffer.allocate(SIGNATURE_LENGTH);
+        infoHeaderBuffer.put(WavChunkType.INFO.getCode().getBytes(StandardCharsets.US_ASCII));
+        infoHeaderBuffer.flip();
+
+        //Construct a single ByteBuffer from both
+        ByteBuffer listInfoBuffer = ByteBuffer.allocateDirect(infoHeaderBuffer.limit() + infoBuffer.limit());
+        listInfoBuffer.put(infoHeaderBuffer);
+        listInfoBuffer.put(infoBuffer);
+        listInfoBuffer.flip();
+        return listInfoBuffer;
     }
 
     /**
@@ -724,7 +712,7 @@ public class WavTagWriter
      * @return byte buffer containing the tag data
      * @throws UnsupportedEncodingException
      */
-    public ByteBuffer convertID3Chunk(final WavTag tag, WavTag existingTag) throws UnsupportedEncodingException
+    public ByteBuffer convertID3Chunk(final WavTag tag, WavTag existingTag)
     {
         try
         {

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c6ab1c14-6cd1-42fd-af1f-7ac1a83b7f78" name="Default" comment="Added sonatype plugin as described at">
       <change beforePath="$PROJECT_DIR$/jaudiotagger.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/jaudiotagger.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jaudiotagger.iws" beforeDir="false" afterPath="$PROJECT_DIR$/jaudiotagger.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/jaudiotagger/audio/wav/WavTagWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/jaudiotagger/audio/wav/WavTagWriter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,9 +85,6 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="jaudiotagger" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -99,12 +100,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="1Z4Eo72oRE6B5htVKSjAAE38qKH" />
   <component name="ProjectReloadState">
@@ -112,47 +117,14 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="292" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="295" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="302" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="953" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="295" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="294" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="301" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="952" />
-    <property name="FullScreen" value="false" />
-    <property name="GoToClass.includeLibraries" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="LayoutCode.rearrangeEntries" value="false" />
-    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="recentsLimit" value="5" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "C:/Code/jthink/opensrc/jaudiotagger/jaudiotagger.ipr"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.jaudiotagger.tag.wav" />
@@ -171,7 +143,7 @@
       <recent name="C:\Code\jthink\opensrc\jaudiotagger\testdata" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Issue390Test">
+  <component name="RunManager" selected="JUnit.WavMetadataTest">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -332,25 +304,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Issue335aTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="jaudiotagger" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.jaudiotagger.issues.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.jaudiotagger.issues" />
-      <option name="MAIN_CLASS_NAME" value="org.jaudiotagger.issues.Issue335aTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Issue390Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="jaudiotagger" />
       <extension name="coverage">
@@ -409,6 +362,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WavMetadataTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jaudiotagger" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.jaudiotagger.tag.wav.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.jaudiotagger.tag.wav" />
+      <option name="MAIN_CLASS_NAME" value="org.jaudiotagger.tag.wav.WavMetadataTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -445,7 +417,7 @@
       <item itemvalue="JUnit.Issue180Test.testWriteIDv22AifForITunes12_6" />
       <item itemvalue="JUnit.AiffAudioTagTest.testReadAiff3" />
       <item itemvalue="JUnit.AiffAudioTagTest" />
-      <item itemvalue="JUnit.Issue335aTest" />
+      <item itemvalue="JUnit.WavMetadataTest" />
       <item itemvalue="JUnit.Issue335Test" />
       <item itemvalue="JUnit.Issue450Test" />
       <item itemvalue="JUnit.Issue390Test" />
@@ -453,11 +425,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.WavMetadataTest" />
         <item itemvalue="JUnit.Issue390Test" />
         <item itemvalue="JUnit.Issue390Test.testIssue" />
         <item itemvalue="JUnit.Issue450Test" />
         <item itemvalue="JUnit.Issue335Test" />
-        <item itemvalue="JUnit.Issue335aTest" />
       </list>
     </recent_temporary>
   </component>
@@ -466,6 +438,7 @@
       <AnalysisUIOptions />
     </option>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -476,13 +449,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1410537432863</updated>
-    </task>
-    <task id="LOCAL-00213" summary="Updated some libs to try ans make work with Java 11/14 (for macOS build)">
-      <created>1588092430796</created>
-      <option name="number" value="00213" />
-      <option name="presentableId" value="LOCAL-00213" />
-      <option name="project" value="LOCAL" />
-      <updated>1588092430796</updated>
     </task>
     <task id="LOCAL-00214" summary="Reverted back">
       <created>1588093729091</created>
@@ -820,7 +786,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633767327681</updated>
     </task>
-    <option name="localTasksCounter" value="262" />
+    <task id="LOCAL-00262" summary="#355:When write to Wav LIST fields need to write as IS0-8859-1 not UTF-8">
+      <created>1674128825137</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1674128825138</updated>
+    </task>
+    <option name="localTasksCounter" value="263" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -842,16 +815,6 @@
       <flatten-packages value="false" />
       <is-autoscroll-to-source value="false" />
     </todo-panel>
-  </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
-      <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -883,11 +846,6 @@
         </entry>
       </map>
     </option>
-    <option name="OPEN_TABS">
-      <set>
-        <option value="1" />
-      </set>
-    </option>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -898,7 +856,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Roon version should be VERSION" />
     <MESSAGE value="oops" />
     <MESSAGE value="#332:Add support for Roon LIVE field" />
     <MESSAGE value="Added Taggers using fields" />
@@ -923,74 +880,25 @@
     <MESSAGE value="Remove reference to bintray" />
     <MESSAGE value="Tidied up README" />
     <MESSAGE value="Remove invalid link to Cobertura reports" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove invalid link to Cobertura reports" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="639" y="114" key="CommitChangelistDialog2" timestamp="1633767324331">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="639" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1633767324331" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1633764876318">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1633764876318" />
-    <state width="1877" height="411" key="GridCell.Tab.0.bottom" timestamp="1633694253199">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="411" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1633694253199" />
-    <state width="1877" height="411" key="GridCell.Tab.0.center" timestamp="1633694253196">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="411" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1633694253196" />
-    <state width="1877" height="411" key="GridCell.Tab.0.left" timestamp="1633694253194">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="411" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1633694253194" />
-    <state width="1877" height="411" key="GridCell.Tab.0.right" timestamp="1633694253198">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="411" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1633694253198" />
-    <state x="746" y="231" key="RollbackChangesDialog" timestamp="1633728651256">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="746" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1633728651256" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1633767331675">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1633767331675" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1627811079771">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1627811079771" />
-    <state x="658" y="311" key="git4idea.merge.GitPullDialog" timestamp="1633695466594">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="658" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1633695466594" />
-    <state x="771" y="365" key="git4idea.ui.GitTagDialog" timestamp="1633767713445">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="771" y="365" key="git4idea.ui.GitTagDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1633767713445" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1625826052375">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1625826052375" />
+    <MESSAGE value="#355:When write to Wav LIST fields need to write as IS0-8859-1 not UTF-8" />
+    <option name="LAST_COMMIT_MESSAGE" value="#355:When write to Wav LIST fields need to write as IS0-8859-1 not UTF-8" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/org/jaudiotagger/tag/aiff/AiffTag.java</url>
-          <line>267</line>
+          <line>304</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/org/jaudiotagger/audio/wav/WavTagWriter.java</url>
-          <line>128</line>
+          <line>181</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/org/jaudiotagger/tag/id3/AbstractID3v2Tag.java</url>
-          <line>2169</line>
+          <line>1838</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -1005,12 +913,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/srctest/org/jaudiotagger/tag/id3/NewInterfaceTest.java</url>
-          <line>1291</line>
+          <line>1289</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/org/jaudiotagger/tag/mp4/Mp4FieldKey.java</url>
-          <line>232</line>
+          <line>306</line>
           <properties field="TITLE_MOVEMENT" class="org.jaudiotagger.tag.mp4.Mp4FieldKey" />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
