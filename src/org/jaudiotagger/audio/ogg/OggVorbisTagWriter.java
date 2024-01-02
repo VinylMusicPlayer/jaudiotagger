@@ -103,7 +103,7 @@ public class OggVorbisTagWriter
         int newSecondPageDataLength = vorbisHeaderSizes.getSetupHeaderSize() + newCommentLength + vorbisHeaderSizes.getExtraPacketDataSize();
         logger.fine("Old 2nd Page no of packets: " + secondPageHeader.getPacketList().size());
         logger.fine("Old 2nd Page size: " + secondPageHeader.getPageLength());
-        logger.fine("Old last packet incomplete: " + secondPageHeader.isLastPacketIncomplete());
+        logger.fine("Old last page status: " + secondPageHeader.isLastPage());
         logger.fine("Setup Header Size: " + vorbisHeaderSizes.getSetupHeaderSize());
         logger.fine("Extra Packets: " + vorbisHeaderSizes.getExtraPacketList().size());
         logger.fine("Extra Packet Data Size: " + vorbisHeaderSizes.getExtraPacketDataSize());

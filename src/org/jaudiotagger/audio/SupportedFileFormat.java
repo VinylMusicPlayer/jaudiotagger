@@ -8,6 +8,7 @@ public enum SupportedFileFormat
 {
     OGG("ogg", "Ogg"),
     OGA("oga", "Oga"),
+    OPUS("opus", "Opus"),
     MP3("mp3", "Mp3"),
     FLAC("flac", "Flac"),
     MP4("mp4", "Mp4"),
