@@ -25,6 +25,7 @@ import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
+import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.Charset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -98,6 +99,11 @@ public class Utils
         }
 
         return number;
+    }
+
+    public static long getLongLE(final byte[] b, final int start, final int end)
+    {
+        return getLongLE(ByteBuffer.wrap(b), start, end);
     }
 
     /**
@@ -425,6 +431,13 @@ public class Utils
         }
     }
 
+    public static int skip(ByteBuffer buffer, int count)
+    {
+        int toSkip = Math.min(buffer.remaining(), count);
+        buffer.position(buffer.position() + toSkip);
+        return toSkip;
+    }
+
     /**
      * Reads 4 bytes and concatenates them into a String.
      * This pattern is used for ID's of various kinds.
@@ -438,6 +451,33 @@ public class Utils
         byte[] b = new byte[4];
         bytes.get(b);
         return new String(b, ISO_8859_1);
+    }
+
+    /**
+     * Read a string of a specified number of ASCII bytes.
+     */
+    public static String readString(final ByteBuffer bytes, final int charsToRead)
+    {
+        final byte[] buf = new byte[charsToRead];
+        bytes.get(buf);
+        return new String(buf, Charset.forName("US-ASCII"));
+    }
+
+    public static byte[] toArray(ByteBuffer buffer)
+    {
+        byte[] result = new byte[buffer.remaining()];
+        buffer.duplicate().get(result);
+        return result;
+    }
+
+    public static String readNullTermStringCharset(ByteBuffer buffer, Charset charset)
+    {
+        ByteBuffer fork = buffer.duplicate();
+        while (buffer.hasRemaining() && buffer.get() != 0)
+            ;
+        if (buffer.hasRemaining())
+            fork.limit(buffer.position() - 1);
+        return new String(toArray(fork), charset);
     }
 
     /**
@@ -488,6 +528,23 @@ public class Utils
     {
         return n & 0xff;
     }
+
+    public static ByteBuffer fetchFromChannel(ReadableByteChannel ch, int size) throws IOException
+    {
+        ByteBuffer buf = ByteBuffer.allocate(size);
+        readFromChannel(ch, buf);
+        buf.flip();
+        return buf;
+    }
+
+    public static int readFromChannel(ReadableByteChannel channel, ByteBuffer buffer) throws IOException
+    {
+        int rem = buffer.position();
+        while (channel.read(buffer) != -1 && buffer.hasRemaining())
+            ;
+        return buffer.position() - rem;
+    }
+
 
     /**
      *
